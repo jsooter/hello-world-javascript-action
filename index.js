@@ -16,7 +16,7 @@ try {
 
   committer_email = payload.head_commit.committer.email;
 
-  if (payload.head_commit.email != 'josh-sooter@pluralsight.com') {
+  if (committer_email != 'josh-sooter@pluralsight.com') {
       core.setFailed(`User email ${committer_email} is is not compliant`);
   }
   console.log(`Committer email: ${committer_email}`);
