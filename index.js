@@ -15,7 +15,11 @@ try {
 }
 
 try {
-    console.log(`Committer email: ${payload.head_commit.email}`);
+    let committer_email = payload.head_commit.email;
+    console.log(`Committer email: ${committer_email}`);
+    if (payload.head_commit.email != 'josh-sooter@pluralsight.com') {
+        core.setFailed(`User email ${committer_email} is is not compliant`);
+    }
 } catch (error){
     core.setFailed(error.message);
 }
