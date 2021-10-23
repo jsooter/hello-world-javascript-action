@@ -13,8 +13,8 @@ try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
-  
-  committer_email = payload.head_commit.email;
+
+  committer_email = payload.head_commit.committer.email;
 
   if (payload.head_commit.email != 'josh-sooter@pluralsight.com') {
       core.setFailed(`User email ${committer_email} is is not compliant`);
