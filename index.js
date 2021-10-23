@@ -14,7 +14,7 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
-  committer_email = payload.head_commit.committer.email;
+  committer_email = github.context.payload.head_commit.committer.email;
 
   if (committer_email != 'josh-sooter@pluralsight.com') {
       core.setFailed(`User email ${committer_email} is is not compliant`);
