@@ -11,18 +11,21 @@ try {
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
-  payload = JSON.stringify(github.context.payload, undefined, 2)
+//   payload = JSON.stringify(github.context.payload, undefined, 2)
 //   console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
 
 try {
+    payload = JSON.stringify(github.context.payload, undefined, 2);
     committer_email = payload.head_commit.email;
-    console.log(`Committer email: ${committer_email}`);
+
     if (payload.head_commit.email != 'josh-sooter@pluralsight.com') {
         core.setFailed(`User email ${committer_email} is is not compliant`);
     }
+    console.log(`Committer email: ${committer_email}`);
+    
 } catch (error){
     core.setFailed(error.message);
 }
